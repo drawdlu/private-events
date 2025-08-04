@@ -1,24 +1,15 @@
-# README
+# Private Events Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A web app that allows users to create and attend events
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- Users can create many events
+- Users can attend many events
+- Events has a location and date
+- Events can have many attendees
 
-* System dependencies
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is part of The Odin Project Curriculum
+https://www.theodinproject.com/lessons/ruby-on-rails-private-events
