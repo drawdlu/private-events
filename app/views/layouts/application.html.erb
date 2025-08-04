@@ -23,6 +23,22 @@
   </head>
 
   <body>
+    <div class="navigation">
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path, data: {
+          turbo_method: :delete } do %>
+          <div class="login-logout">
+            Logout
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path do %>
+          <div class="login-logout">
+            Login
+          </div>
+        <% end %>
+      <% end %>
+    </div>
     <div class="alerts">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
