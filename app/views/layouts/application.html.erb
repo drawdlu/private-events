@@ -35,6 +35,11 @@
             My Events
           </div>
         <% end %>
+        <%= link_to new_event_path do %>
+          <div class="new_event">
+            Create Event
+          </div>
+        <% end %>
         <%= link_to destroy_user_session_path, data: {
           turbo_method: :delete } do %>
           <div class="logout">

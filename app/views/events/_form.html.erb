@@ -1,0 +1,23 @@
+<%= form_with model: event do |form|%>
+    <div class="field">
+        <%= form.label :location %>
+        <%= form.text_field :location %>
+        <% event.errors.full_messages_for(:location).each do |message |%>
+            <div>
+                <%= message %>
+            </div>
+        <% end %>
+    </div>
+    <div class="field">
+        <%= form.label :date %>
+        <%= form.date_field :date %>
+        <% event.errors.full_messages_for(:date).each do |message| %>
+            <div>
+                <%= message%>
+            </div>
+        <% end %>
+    </div>
+    <div class="form_create_button">
+        <%= form.submit button%>
+    </div>
+<% end %>
