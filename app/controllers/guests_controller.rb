@@ -1,11 +1,19 @@
 class GuestsController < ApplicationController
   def create
-    @guest = current_user.guests.build(guest_params)
+    @event = Event.find(guest_params["event_id"])
+    @creator_id = @event.creator.id
 
-    if @guest.save
-      redirect_to root_path
+    if current_user.id == @creator_id
+      flash.now[:notice] = "You created this event"
+      render "events/show", locals: { event: @event }, status: :method_not_allowed
     else
-      render event_path(Event.find(params[:id]))
+      @guest = current_user.guests.build(guest_params)
+
+      if @guest.save
+        redirect_to root_path
+      else
+        render "events/show", locals: { event: @event }
+      end
     end
   end
 
