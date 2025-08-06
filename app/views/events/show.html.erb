@@ -11,5 +11,12 @@
         <div class="event-date">
             Date: <%= @event.date %>
         </div>
+        <% if user_signed_in? %>
+            <div class="event-attend-button">
+                <%= link_to  guests_path(event_id: @event.id), data: { turbo_method: :post } do %>
+                    <div>Attend</div>
+                <% end %>
+            </div>
+        <% end %>
     </div>
 </div>

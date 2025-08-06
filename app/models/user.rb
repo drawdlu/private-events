@@ -8,4 +8,6 @@ class User < ApplicationRecord
   validates :last_name, presence: true
 
   has_many :events
+  has_many :guests
+  has_many :attended_events, through: :guests, source: :event
 end
