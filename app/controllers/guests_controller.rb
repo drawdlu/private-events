@@ -1,9 +1,8 @@
 class GuestsController < ApplicationController
   def create
     @event = Event.find(guest_params["event_id"])
-    @creator_id = @event.creator.id
 
-    if current_user.id == @creator_id
+    if own_event
       flash.now[:notice] = "You created this event"
       render "events/show", locals: { event: @event }, status: :method_not_allowed
     else
@@ -21,5 +20,10 @@ class GuestsController < ApplicationController
 
   def guest_params
     params.permit(:event_id)
+  end
+
+  def own_event
+    @creator_id = @event.creator.id
+    current_user.id == @creator_id
   end
 end
