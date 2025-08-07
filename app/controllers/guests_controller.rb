@@ -10,6 +10,7 @@ class GuestsController < ApplicationController
 
       begin
         if @guest.save
+          flash[:notice] = "You have successfully signed up for the event"
           redirect_to root_path
         else
           render "events/show", locals: { event: @event }, status: :unprocessable_entity
