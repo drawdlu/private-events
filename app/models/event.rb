@@ -10,4 +10,8 @@ class Event < ApplicationRecord
   scope :upcoming, -> { where("date >= ?", Date.current) }
 
   scope :past, -> { where("date < ?", Date.current) }
+
+  def not_own_event(current_user_ID)
+    self.user_id != current_user_ID
+  end
 end
