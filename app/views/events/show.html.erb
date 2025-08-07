@@ -40,7 +40,7 @@
                         <div class="event-attend-button">
                             <%= link_to  guest_path(event_id: @event.id),
                                 data: { turbo_method: :delete,
-                                        turbo_confitm: "Are you sure?" } do %>
+                                        turbo_confirm: "Are you sure?" } do %>
                                 <div>Unattend</div>
                             <% end %>
                         </div>
