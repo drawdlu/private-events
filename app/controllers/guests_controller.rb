@@ -1,24 +1,12 @@
 class GuestsController < ApplicationController
   def create
-    @event = Event.find(guest_params["event_id"])
+    @guest = current_user.guests.build(guest_params)
 
-    if own_event
-      flash.now[:notice] = "You created this event"
-      render "events/show", locals: { event: @event }, status: :method_not_allowed
+    if @guest.save
+      flash[:notice] = "You have successfully signed up for the event"
+      redirect_to root_path
     else
-      @guest = current_user.guests.build(guest_params)
-
-      begin
-        if @guest.save
-          flash[:notice] = "You have successfully signed up for the event"
-          redirect_to root_path
-        else
-          render "events/show", locals: { event: @event }, status: :unprocessable_entity
-        end
-      rescue ActiveRecord::RecordNotUnique
-          flash.now[:notice] = "You have already signed up for this event"
-          render "events/show", locals: { event: @event }, status: :unprocessable_entity
-      end
+      render "events/show", locals: { event: @event }, status: :unprocessable_entity
     end
   end
 
@@ -34,10 +22,5 @@ class GuestsController < ApplicationController
 
   def guest_params
     params.permit(:event_id)
-  end
-
-  def own_event
-    @creator_id = @event.creator.id
-    current_user.id == @creator_id
   end
 end
