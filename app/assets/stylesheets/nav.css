@@ -1,4 +1,6 @@
 .navigation {
-    height: 3rem;
+    padding: 2rem;
     width: 100vw;
+    display: flex;
+    gap: 2rem;
 }

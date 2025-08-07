@@ -24,12 +24,16 @@
 
   <body>
     <div class="navigation">
-      <%= link_to root_path do %>
-        <div class="home">
-          Home
-        </div>
-      <% end %>
+
       <% if user_signed_in? %>
+        <div class="username">
+          welcome, <%= current_user.first_name%>
+        </div>
+        <%= link_to root_path do %>
+          <div class="home">
+            Events
+          </div>
+        <% end %>
         <%= link_to user_path(current_user) do %>
           <div class="show-page">
             My Events
@@ -47,6 +51,11 @@
           </div>
         <% end %>
       <% else %>
+        <%= link_to root_path do %>
+          <div class="home">
+            Events
+          </div>
+        <% end %>
         <%= link_to new_user_session_path do %>
           <div class="login">
             Login
