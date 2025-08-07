@@ -13,10 +13,19 @@
         </div>
         <% if user_signed_in? %>
             <% if @event.own_event(current_user.id) %>
-                <div class="edit-event-button">
-                    <%= link_to edit_event_path(@event) do %>
-                        <div>Edit</div>
-                    <% end %>
+                <div class="edit-delete-buttons">
+                    <div class="event-button">
+                        <%= link_to edit_event_path(@event) do %>
+                            <div>Edit</div>
+                        <% end %>
+                    </div>
+                    <div class="event-button">
+                        <%= link_to event_path(@event),
+                        data: { turbo_method: :delete,
+                                turbo_confirm: "Are you sure?"} do %>
+                            <div>Delete</div>
+                        <% end %>
+                    </div>
                 </div>
             <% else %>
                 <% if @event.not_attended?(current_user.id) && @event.upcoming_event? %>
