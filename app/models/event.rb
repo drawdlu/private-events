@@ -16,7 +16,7 @@ class Event < ApplicationRecord
   end
 
   def not_attended?(current_user_ID)
-    Guest.find_by(user_id: current_user_ID, event_id: self.id).nil?
+    Guest.find_by(user_id: current_user_ID, event_id: self.id, access: :attending).nil?
   end
 
   def upcoming_event?

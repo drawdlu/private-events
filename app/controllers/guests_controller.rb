@@ -21,6 +21,6 @@ class GuestsController < ApplicationController
   private
 
   def guest_params
-    params.permit(:event_id)
+    params.permit(:event_id, :access)
   end
 end
