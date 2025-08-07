@@ -28,12 +28,23 @@
                     </div>
                 </div>
             <% else %>
-                <% if @event.not_attended?(current_user.id) && @event.upcoming_event? %>
-                    <div class="event-attend-button">
-                        <%= link_to  guests_path(event_id: @event.id), data: { turbo_method: :post } do %>
-                            <div>Attend</div>
-                        <% end %>
-                    </div>
+                <% if @event.upcoming_event? %>
+                    <% if @event.not_attended?(current_user.id) %>
+                        <div class="event-attend-button">
+                            <%= link_to  guests_path(event_id: @event.id), 
+                                data: { turbo_method: :post } do %>
+                                <div>Attend</div>
+                            <% end %>
+                        </div>
+                    <% else %>
+                        <div class="event-attend-button">
+                            <%= link_to  guest_path(event_id: @event.id),
+                                data: { turbo_method: :delete,
+                                        turbo_confitm: "Are you sure?" } do %>
+                                <div>Unattend</div>
+                            <% end %>
+                        </div>
+                    <% end %>
                 <% end %>
             <% end %>
         <% end %>

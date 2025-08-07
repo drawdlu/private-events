@@ -22,6 +22,14 @@ class GuestsController < ApplicationController
     end
   end
 
+  def destroy
+    @guest = current_user.guests.find_by(guest_params)
+    @guest.destroy
+
+    flash[:notice] = "Successfully unattended event"
+    redirect_to root_path status: :see_other
+  end
+
   private
 
   def guest_params
