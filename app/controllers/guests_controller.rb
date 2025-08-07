@@ -8,10 +8,15 @@ class GuestsController < ApplicationController
     else
       @guest = current_user.guests.build(guest_params)
 
-      if @guest.save
-        redirect_to root_path
-      else
-        render "events/show", locals: { event: @event }
+      begin
+        if @guest.save
+          redirect_to root_path
+        else
+          render "events/show", locals: { event: @event }, status: :unprocessable_entity
+        end
+      rescue ActiveRecord::RecordNotUnique
+          flash.now[:notice] = "You have already signed up for this event"
+          render "events/show", locals: { event: @event }, status: :unprocessable_entity
       end
     end
   end
