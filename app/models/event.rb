@@ -7,11 +7,7 @@ class Event < ApplicationRecord
   has_many :attendees, through: :guests, source: :user
 
 
-  def self.upcoming
-    where("date >= ?", Date.current)
-  end
+  scope :upcoming, -> { where("date >= ?", Date.current) }
 
-  def self.past
-    where("date < ?", Date.current)
-  end
+  scope :past, -> { where("date < ?", Date.current) }
 end
