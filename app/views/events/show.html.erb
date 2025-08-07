@@ -11,12 +11,20 @@
         <div class="event-date">
             Date: <%= @event.date %>
         </div>
-        <% if user_signed_in? && @event.not_own_event(current_user.id) %>
-            <div class="event-attend-button">
-                <%= link_to  guests_path(event_id: @event.id), data: { turbo_method: :post } do %>
-                    <div>Attend</div>
-                <% end %>
-            </div>
+        <% if user_signed_in? %>
+            <% if @event.own_event(current_user.id) %>
+                <div class="edit-event-button">
+                    <%= link_to edit_event_path(@event) do %>
+                        <div>Edit</div>
+                    <% end %>
+                </div>
+            <% else %>
+                <div class="event-attend-button">
+                    <%= link_to  guests_path(event_id: @event.id), data: { turbo_method: :post } do %>
+                        <div>Attend</div>
+                    <% end %>
+                </div>
+            <% end %>
         <% end %>
     </div>
 </div>
