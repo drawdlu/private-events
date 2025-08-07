@@ -1,13 +1,7 @@
-<h2>Events Page</h2>
+<h2>Upcoming Events</h2>
 
-<div class="events">
-    <div class="event-card">
-        <% @events.each do |event| %>
-            <div class="event-location"><%= event.location %></div>
-            <div class="event-date"><%= event.date %></div>
-            <%= link_to event_path(event) do %>
-                <div class="event-link">See Details</div>
-            <% end %>
-        <% end %>
-    </div>
-</div>
+<%= render "event-list", events: @events.upcoming %>
+
+<h2>Past Events </h2>
+
+<%= render "event-list", events: @events.past %>

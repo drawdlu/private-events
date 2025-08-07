@@ -1,14 +1,14 @@
 <h2>User Events</h2>
 
-<%= render "events", events: @events %>
+<%= render "events/event-list", events: @events %>
 
 <h2>Attended Events</h2>
 
-<%= render "events", 
+<%= render "events/event-list", 
 events: current_user.attended_events.where("date >= ?", Date.current ) %>
 
 
 <h2>Previous Events Attended</h2>
 
-<%= render "events", 
+<%= render "events/event-list", 
 events: current_user.attended_events.where("date < ?", Date.current ) %>
