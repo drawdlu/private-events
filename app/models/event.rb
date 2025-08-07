@@ -14,4 +14,12 @@ class Event < ApplicationRecord
   def own_event(current_user_ID)
     self.user_id == current_user_ID
   end
+
+  def not_attended?(current_user_ID)
+    Guest.find_by(user_id: current_user_ID, event_id: self.id).nil?
+  end
+
+  def upcoming_event?
+    self.date >= Date.current
+  end
 end
