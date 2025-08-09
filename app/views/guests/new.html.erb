@@ -1,0 +1,29 @@
+<h2>
+    Invite Guests to 
+    <%= @event.location %>
+</h2>
+
+<div class="users-container">
+
+    <ul>
+        <% @users.each do |user| %>
+            <% unless user.id == current_user.id %>
+                <li>
+                    <%= user.first_name %>
+                    <%= user.last_name %>
+                    <% if @event.invited_attendees.include?(user)%>
+                            <div>Uninvite</div>
+                    <% else %>
+                        <%= link_to guests_path(event_id: @event.id, access: :invited, user_id: user.id),
+                                            data: {turbo_method: :post} do %>
+                            <div>
+                                Invite
+                            </div>
+                        <% end %>
+                    <% end %>
+
+                </li>
+            <% end %>
+        <% end %>
+    </ul>
+</div>

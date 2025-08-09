@@ -19,6 +19,11 @@
                             <div>Edit</div>
                         <% end %>
                     </div>
+                    <% if @event.private == true %>
+                        <%= link_to new_guest_path(event_id: @event.id) do %>
+                            <div>Edit Invites</div>
+                        <% end %>
+                    <% end %>
                     <div class="event-button">
                         <%= link_to event_path(@event),
                         data: { turbo_method: :delete,
@@ -31,14 +36,14 @@
                 <% if @event.upcoming_event? %>
                     <% if @event.not_attended?(current_user.id) %>
                         <div class="event-attend-button">
-                            <%= link_to  guests_path(event_id: @event.id), 
+                            <%= link_to  guests_path(event_id: @event.id, access: :attending), 
                                 data: { turbo_method: :post } do %>
                                 <div>Attend</div>
                             <% end %>
                         </div>
                     <% else %>
                         <div class="event-attend-button">
-                            <%= link_to  guest_path(event_id: @event.id),
+                            <%= link_to  guest_path(event_id: @event.id, access: :attending),
                                 data: { turbo_method: :delete,
                                         turbo_confirm: "Are you sure?" } do %>
                                 <div>Unattend</div>
@@ -58,6 +63,17 @@
         <% @event.attendees.each do |user| %>
             <li>
                 <%= user.first_name %> <%= user.last_name%>
+            </li>
+        <% end %>
+    </ul>
+</div>
+
+<h2>Invited Guests</h2>
+<div class="invite-list">
+    <ul>
+        <% @event.invited_attendees.each do |guest| %>
+            <li>
+                <%= guest.first_name %> <%= guest.last_name %>
             </li>
         <% end %>
     </ul>
