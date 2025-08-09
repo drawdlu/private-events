@@ -4,7 +4,9 @@
             <% if event.private == true %>
                 Private Event
             <% end %>
-            <div class="event-location"><%= event.location %></div>
+            <div class="event-location">
+                <%= event.location %>
+            </div>
             <div class="event-date"><%= event.date %></div>
             <%= link_to event_path(event) do %>
                 <div class="event-link">See Details</div>

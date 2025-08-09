@@ -4,7 +4,10 @@ class Event < ApplicationRecord
 
   belongs_to :creator, class_name: "User", foreign_key: "user_id"
   has_many :guests, dependent: :destroy
-  has_many :attendees, through: :guests, source: :user
+  has_many :attendees, -> { where("guests.access = ?", 0) },
+            through: :guests, source: :user
+  has_many :invited_attendees, -> { where("guests.access = ?", 1) },
+            through: :guests, source: :user
 
 
   scope :upcoming, -> { where("date >= ?", Date.current) }
