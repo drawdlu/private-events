@@ -51,7 +51,9 @@ class EventsController < ApplicationController
 
   def private_event
     @event = Event.find(params[:id])
-    unless @event.invited_attendees.include?(current_user) || @event.private == false
+    unless @event.invited_attendees.include?(current_user) ||
+          @event.private == false ||
+          @event.creator == current_user
       flash[:notice] = "Only invited guests may view this event"
       redirect_to root_path
     end

@@ -1,6 +1,6 @@
 <div class="events">
     <% events.each do |event| %>
-        <% if event.private == false || event.invited_attendees.include?(current_user) %>
+        <% if event.private == false || event.invited_attendees.include?(current_user) || event.creator == current_user %>
             <div class="event-card">
                 <% if event.private == true %>
                     Private Event
