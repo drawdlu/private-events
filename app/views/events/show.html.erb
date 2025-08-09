@@ -68,13 +68,15 @@
     </ul>
 </div>
 
-<h2>Invited Guests</h2>
-<div class="invite-list">
-    <ul>
-        <% @event.invited_attendees.each do |guest| %>
-            <li>
-                <%= guest.first_name %> <%= guest.last_name %>
-            </li>
-        <% end %>
-    </ul>
-</div>
+<% if @event.private %>
+    <h2>Invited Guests</h2>
+    <div class="invite-list">
+        <ul>
+            <% @event.invited_attendees.each do |guest| %>
+                <li>
+                    <%= guest.first_name %> <%= guest.last_name %>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
