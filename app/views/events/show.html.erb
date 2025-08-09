@@ -50,3 +50,15 @@
         <% end %>
     </div>
 </div>
+
+<h2>Attendees</h2>
+
+<div class="attendees-container">
+    <ul>
+        <% @event.attendees.each do |user| %>
+            <li>
+                <%= user.first_name %> <%= user.last_name%>
+            </li>
+        <% end %>
+    </ul>
+</div>
