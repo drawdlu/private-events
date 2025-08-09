@@ -9,5 +9,6 @@ class User < ApplicationRecord
 
   has_many :events, dependent: :destroy
   has_many :guests, dependent: :destroy
-  has_many :attended_events, through: :guests, source: :event
+  has_many :attended_events, -> { where("guests.access = ?", 0) },
+             through: :guests, source: :event
 end
