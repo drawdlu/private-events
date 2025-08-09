@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :private_event, only: [ :show ]
   def index
     @events = Event.all
   end
@@ -46,5 +47,13 @@ class EventsController < ApplicationController
   private
   def event_params
     params.require(:event).permit(:location, :date, :private)
+  end
+
+  def private_event
+    @event = Event.find(params[:id])
+    unless @event.invited_attendees.include?(current_user) || @event.private == false
+      flash[:notice] = "Only invited guests may view this event"
+      redirect_to root_path
+    end
   end
 end
