@@ -29,8 +29,12 @@ class GuestsController < ApplicationController
       flash[:notice] = "Successfully unattended event"
       redirect_to event_path(guest_params["event_id"])
     else
-      @guest = Guest.find_by(guest_params)
-      @guest.destroy
+      @guests = Guest.where(event_id: guest_params["event_id"],
+                          user_id: guest_params["user_id"])
+
+      @guests.each do |guest|
+        guest.destroy
+      end
 
       redirect_to new_guest_path
     end
