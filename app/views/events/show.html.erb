@@ -19,7 +19,7 @@
                             <div>Edit</div>
                         <% end %>
                     </div>
-                    <% if @event.private == true %>
+                    <% if @event.private == true && @event.upcoming_event? %>
                         <%= link_to new_guest_path(event_id: @event.id) do %>
                             <div>Edit Invites</div>
                         <% end %>
