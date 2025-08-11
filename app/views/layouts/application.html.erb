@@ -29,21 +29,23 @@
         <div class="username">
           welcome, <%= current_user.first_name%>
         </div>
-        <%= link_to root_path do %>
-          <div class="home">
-            Events
-          </div>
-        <% end %>
-        <%= link_to user_path(current_user) do %>
-          <div class="show-page">
-            My Events
-          </div>
-        <% end %>
-        <%= link_to new_event_path do %>
-          <div class="new_event">
-            Create Event
-          </div>
-        <% end %>
+        <div class="nav-links">
+          <%= link_to root_path, class: "home" do %>
+            <div>
+              Events
+            </div>
+          <% end %>
+          <%= link_to user_path(current_user) do %>
+            <div>
+              My Events
+            </div>
+          <% end %>
+          <%= link_to new_event_path do %>
+            <div>
+              Create Event
+            </div>
+          <% end %>
+        </div>
         <%= link_to destroy_user_session_path, data: {
           turbo_method: :delete } do %>
           <div class="logout">
@@ -52,12 +54,12 @@
         <% end %>
       <% else %>
         <%= link_to root_path do %>
-          <div class="home">
+          <div>
             Events
           </div>
         <% end %>
         <%= link_to new_user_session_path do %>
-          <div class="login">
+          <div>
             Login
           </div>
         <% end %>
