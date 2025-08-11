@@ -1,0 +1,10 @@
+@font-face {
+    font-family: "roboto";
+    src: url("Roboto-VariableFont.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "roboto", Arial, Helvetica, system-ui, -apple-system;
+}
