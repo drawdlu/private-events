@@ -2,6 +2,10 @@
 
 <%= render "events/event-list", events: @events.upcoming %>
 
+<h2>Event Invitations</h2>
+
+<%= render "events/event-list", events: current_user.invited_events_not_attended %>
+
 <h2>Events Attending</h2>
 
 <%= render "events/event-list", 
