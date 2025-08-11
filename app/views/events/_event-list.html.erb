@@ -2,18 +2,17 @@
     <% events.order(:date).each do |event| %>
         <% if event.private == false || event.invited_attendees.include?(current_user) || event.creator == current_user %>
             <div class="event-card">
-                <% if event.private == true %>
-                    Private Event
-                <% end %>
                 <div class="event-location">
-                    <%= event.location %>
+                    <span><%= event.location %> </span>
+                    <% if event.private == true %>
+                        (Private Event)
+                    <% end %>
                 </div>
                 <div class="event-date"><%= event.date %></div>
                 <%= link_to event_path(event) do %>
-                    <div class="event-link">See Details</div>
+                    See Details
                 <% end %>
             </div>
-            <br>
         <% end %>
     <% end %>
 </div>

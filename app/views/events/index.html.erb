@@ -1,7 +1,12 @@
-<h2>Upcoming Events</h2>
+<div class="container">
+    <div class="events-container">
+        <h2>Upcoming Events</h2>
 
-<%= render "event-list", events: @events.upcoming %>
+        <%= render "event-list", events: @events.upcoming %>
+    </div>
+    <div class="events-container">
+        <h2>Past Events </h2>
 
-<h2>Past Events </h2>
-
-<%= render "event-list", events: @events.past %>
+        <%= render "event-list", events: @events.past %>
+    </div>
+</div>
