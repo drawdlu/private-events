@@ -12,8 +12,8 @@
 .events {
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
-    
+    grid-template-columns: repeat(auto-fit, minmax(30ch, 30ch));
+    justify-content: center;
 }
 
 .event-location span {
@@ -50,10 +50,11 @@
  
 
 .events-container:nth-child(odd) .event-card {
+    border-left: 15px solid var(--off-orange);
     box-shadow: 8px 8px 10px lightgrey;
 }
 
 .events-container:nth-child(even) .event-card {
+    border-left: 15px solid var(--dark-blue);
     box-shadow: 8px 8px 10px var(--dark-blue);
-
 }
