@@ -62,32 +62,35 @@
         <% end %>
     </div>
     
-    <div class="event-attendees">
-        <h2>Attendees</h2>
+    <div class="event-users">
+        <div class="event-attendees">
+            <h2>Attendees</h2>
         
-        <div class="attendees-container">
-            <ul>
-                <% @event.attendees.each do |user| %>
-                    <li>
-                        <%= user.first_name %> <%= user.last_name%>
-                    </li>
-                <% end %>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="event-invited-guests">
-        <% if @event.private %>
-            <h2>Invited Guests</h2>
-            <div class="invite-list">
+            <div class="attendees-container">
                 <ul>
-                    <% @event.invited_attendees.each do |guest| %>
+                    <% @event.attendees.each do |user| %>
                         <li>
-                            <%= guest.first_name %> <%= guest.last_name %>
+                            <%= user.first_name %> <%= user.last_name%>
                         </li>
                     <% end %>
                 </ul>
             </div>
+        </div>
+        
+        <% if @event.private %>
+            <div class="event-invited-guests">
+                <h2>Invited Guests</h2>
+                <div class="invite-list">
+                    <ul>
+                        <% @event.invited_attendees.each do |guest| %>
+                            <li>
+                                <%= guest.first_name %> <%= guest.last_name %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
         <% end %>
     </div>
+
 </div>

@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     margin: 5rem;
-    gap: 5rem;
+    gap: 4rem;
 }
 
 .event-details {
@@ -67,3 +67,11 @@
 
 /* Attendees and Invites */
 
+.event-users {
+    display: flex;
+    gap: 5rem;
+}
+
+.event-users ul {
+    margin-left: -1rem;
+}
