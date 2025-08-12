@@ -2,26 +2,27 @@
     <div class="field">
         <%= form.label :location %>
         <%= form.text_field :location %>
-        <% event.errors.full_messages_for(:location).each do |message |%>
-            <div>
-                <%= message %>
-            </div>
-        <% end %>
     </div>
+    <% event.errors.full_messages_for(:location).each do |message |%>
+        <div class="message">
+            <%= message %>
+        </div>
+    <% end %>
     <div class="field">
         <%= form.label :date %>
         <%= form.date_field :date %>
-        <% event.errors.full_messages_for(:date).each do |message| %>
-            <div>
-                <%= message%>
-            </div>
-        <% end %>
+
     </div>
-    <div class="field">
+    <% event.errors.full_messages_for(:date).each do |message| %>
+        <div class="message">
+            <%= message%>
+        </div>
+    <% end %>
+    <div class="field private">
         <%= form.label :private, "Private" %>
         <%= form.checkbox :private %>
     </div>
-    <div class="form_create_button">
+    <div class="form-create-button">
         <%= form.submit button%>
     </div>
 <% end %>
