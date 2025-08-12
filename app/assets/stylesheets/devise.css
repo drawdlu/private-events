@@ -1,0 +1,13 @@
+.devise-forms {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.devise-forms a {
+    transition: color 0.3s ease-in-out;
+}
+
+.devise-forms a:hover {
+    color: var(--link-hover-white);
+}
