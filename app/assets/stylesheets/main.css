@@ -1,3 +1,12 @@
+.alerts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--off-orange);
+    color: var(--dark-blue);
+    box-shadow: 4px 4px 4px var(--dark-blue);
+}
+
 .events-container:nth-child(odd) {
     padding: 2rem 5rem 3rem 5rem;
 }
