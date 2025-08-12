@@ -1,33 +1,33 @@
-.create-event {
+.event-form {
     display: flex;
     flex-direction: column; 
     align-items: center;
     margin: 5rem;
 }
 
-.create-event h2 {
+.event-form h2 {
     font-size: 2rem;
     margin-bottom: 2rem;
 }
 
-.create-event form {
+.event-form form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.create-event .field {
+.event-form .field {
     display: flex;
     justify-content: space-between;
     width: 300px;
 }
 
-.create-event .field.private{
+.event-form .field.private{
     justify-content: flex-start;
     gap: 1rem;
 }
 
-.create-event .message {
+.event-form .message {
     text-align: center;
 }
 
