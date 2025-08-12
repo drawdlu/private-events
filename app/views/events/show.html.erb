@@ -1,28 +1,33 @@
-<h2>Event Details</h2>
-
-<div class="event-container">
-    <div class="event-card">
-        <div class="event-creator">
-            Hosted by: <%= @event.creator.first_name %>
+<div class="show-event-container">
+    <div class="event-details">
+        <h2>Event Details</h2>
+        
+        <div class="event-detail-value">
+            <div class="detail">Hosted by: </div>
+            <div class="value"><%= @event.creator.first_name %></div>
         </div>
-        <div class="event-location">
-            Location: <%= @event.location %>
+        <div class="event-detail-value">
+            <div class="detail">Location: </div>
+            <div class="value"><%= @event.location %></div>
         </div>
-        <div class="event-date">
-            Date: <%= @event.date %>
+        <div class="event-detail-value">
+            <div class="detail">Date: </div>
+            <div class="value"><%= @event.date %></div>
         </div>
         <% if user_signed_in? %>
             <% if @event.own_event(current_user.id) %>
-                <div class="edit-delete-buttons">
+                <div class="event-attend-edit-buttons">
                     <div class="event-button">
                         <%= link_to edit_event_path(@event) do %>
                             <div>Edit</div>
                         <% end %>
                     </div>
                     <% if @event.private == true && @event.upcoming_event? %>
-                        <%= link_to new_guest_path(event_id: @event.id) do %>
-                            <div>Edit Invites</div>
-                        <% end %>
+                        <div class="event-button">
+                            <%= link_to new_guest_path(event_id: @event.id) do %>
+                                <div>Edit Invites</div>
+                            <% end %>
+                        </div>
                     <% end %>
                     <div class="event-button">
                         <%= link_to event_path(@event),
@@ -34,49 +39,55 @@
                 </div>
             <% else %>
                 <% if @event.upcoming_event? %>
-                    <% if @event.not_attended?(current_user.id) %>
-                        <div class="event-attend-button">
-                            <%= link_to  guests_path(event_id: @event.id, access: :attending), 
-                                data: { turbo_method: :post } do %>
-                                <div>Attend</div>
-                            <% end %>
-                        </div>
-                    <% else %>
-                        <div class="event-attend-button">
-                            <%= link_to  guest_path(event_id: @event.id, access: :attending),
-                                data: { turbo_method: :delete,
-                                        turbo_confirm: "Are you sure?" } do %>
-                                <div>Unattend</div>
-                            <% end %>
-                        </div>
-                    <% end %>
+                    <div class="event-attend-edit-buttons">
+                        <% if @event.not_attended?(current_user.id) %>
+                            <div class="event-button attend">
+                                <%= link_to  guests_path(event_id: @event.id, access: :attending),
+                                    data: { turbo_method: :post } do %>
+                                    Attend
+                                <% end %>
+                            </div>
+                        <% else %>
+                            <div class="event-button attend">
+                                <%= link_to  guest_path(event_id: @event.id, access: :attending),
+                                    data: { turbo_method: :delete,
+                                            turbo_confirm: "Are you sure?" } do %>
+                                    <div>Unattend</div>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
                 <% end %>
             <% end %>
         <% end %>
     </div>
-</div>
-
-<h2>Attendees</h2>
-
-<div class="attendees-container">
-    <ul>
-        <% @event.attendees.each do |user| %>
-            <li>
-                <%= user.first_name %> <%= user.last_name%>
-            </li>
-        <% end %>
-    </ul>
-</div>
-
-<% if @event.private %>
-    <h2>Invited Guests</h2>
-    <div class="invite-list">
-        <ul>
-            <% @event.invited_attendees.each do |guest| %>
-                <li>
-                    <%= guest.first_name %> <%= guest.last_name %>
-                </li>
-            <% end %>
-        </ul>
+    
+    <div class="event-attendees">
+        <h2>Attendees</h2>
+        
+        <div class="attendees-container">
+            <ul>
+                <% @event.attendees.each do |user| %>
+                    <li>
+                        <%= user.first_name %> <%= user.last_name%>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
     </div>
-<% end %>
+    
+    <div class="event-invited-guests">
+        <% if @event.private %>
+            <h2>Invited Guests</h2>
+            <div class="invite-list">
+                <ul>
+                    <% @event.invited_attendees.each do |guest| %>
+                        <li>
+                            <%= guest.first_name %> <%= guest.last_name %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+    </div>
+</div>
