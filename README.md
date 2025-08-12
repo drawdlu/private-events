@@ -7,6 +7,7 @@ A web app that allows users to create events, make events private, invite other 
 ### Main features
 - User authentication
 - Create events
+- Attend events
 - Make events private (invite only)
 - Edit and delete events
 - Invite and uninvite other users to private events
