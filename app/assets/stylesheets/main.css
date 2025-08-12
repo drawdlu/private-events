@@ -1,10 +1,9 @@
-
 .events-container:nth-child(odd) {
-    padding: 3rem 5rem;
+    padding: 2rem 5rem 3rem 5rem;
 }
 
 .events-container:nth-child(even) { 
-    padding: 3rem 5rem;
+    padding: 2rem 5rem 3rem 5rem;
     background-color: var(--off-orange);
     color: var(--dark-blue);
 }
@@ -38,7 +37,8 @@
 
 .events-container h2 {
     text-align: center; 
-    padding-bottom: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
 .event-card {
@@ -48,7 +48,6 @@
     border-radius: 10px;
 }
  
-
 .events-container:nth-child(odd) .event-card {
     border-left: 15px solid var(--off-orange);
     box-shadow: 8px 8px 10px lightgrey;
